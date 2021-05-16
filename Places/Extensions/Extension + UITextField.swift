@@ -12,7 +12,7 @@ extension UITextField {
     func setup(textField: UITextField,
                fontSize: CGFloat,
                weight: UIFont.Weight,
-               placeHolder: String) {
+               placeholder: String) {
         textField.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
         textField.placeholder = placeholder
     }

@@ -16,6 +16,8 @@ class PlaceListTableViewCell: UITableViewCell {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
     
+    @IBOutlet weak var ratingDisplay: RatingDisplay!
+    
     //MARK:- Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +25,8 @@ class PlaceListTableViewCell: UITableViewCell {
         setupLabels()
         setupImageView()
     }
-
+    
+    
     //MARK:- Public Methods
     func setupHeightOfRows(_ name: UILabel, _ address: UILabel, _ type: UILabel, spacing: CGFloat) -> CGFloat {
         let heightOfLabels = name.frame.height + address.frame.height + type.frame.height

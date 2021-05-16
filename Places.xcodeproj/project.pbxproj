@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		20333DC3F7182DDFD2CEED09 /* Pods_Places.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 870A0D51BE1B4FAABD1BF23A /* Pods_Places.framework */; };
 		3C1FA485264AC0D5007D80E9 /* Extension + UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FA484264AC0D5007D80E9 /* Extension + UITextField.swift */; };
+		3C1FA487264C2052007D80E9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FA486264C2052007D80E9 /* StorageManager.swift */; };
+		3C1FA48B264EA22F007D80E9 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FA48A264EA22F007D80E9 /* RatingControl.swift */; };
+		3C820773264FCA2D00FDFB22 /* RatingDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */; };
 		3CEE101326479F8A0088BBAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE101226479F8A0088BBAE /* AppDelegate.swift */; };
 		3CEE101526479F8A0088BBAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE101426479F8A0088BBAE /* SceneDelegate.swift */; };
 		3CEE101726479F8A0088BBAE /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE101626479F8A0088BBAE /* PlaceListViewController.swift */; };
@@ -24,6 +27,9 @@
 
 /* Begin PBXFileReference section */
 		3C1FA484264AC0D5007D80E9 /* Extension + UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UITextField.swift"; sourceTree = "<group>"; };
+		3C1FA486264C2052007D80E9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		3C1FA48A264EA22F007D80E9 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
+		3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingDisplay.swift; sourceTree = "<group>"; };
 		3CEE100F26479F8A0088BBAE /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CEE101226479F8A0088BBAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CEE101426479F8A0088BBAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -62,6 +68,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3C820771264FC9DD00FDFB22 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3C1FA486264C2052007D80E9 /* StorageManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		3CEE100626479F8A0088BBAE = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +102,7 @@
 				3CEE102A2647A1EC0088BBAE /* Models */,
 				3CEE102F2647B3C80088BBAE /* Extensions */,
 				3CEE10282647A0710088BBAE /* Delegates */,
+				3C820771264FC9DD00FDFB22 /* Managers */,
 				3CEE10292647A0930088BBAE /* Sources */,
 			);
 			path = Places;
@@ -108,6 +123,8 @@
 				3CEE101626479F8A0088BBAE /* PlaceListViewController.swift */,
 				3CEE102D2647A7650088BBAE /* PlaceListTableViewCell.swift */,
 				3CEE10342647BAF50088BBAE /* DescriptionTableViewController.swift */,
+				3C1FA48A264EA22F007D80E9 /* RatingControl.swift */,
+				3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -272,10 +289,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CEE101726479F8A0088BBAE /* PlaceListViewController.swift in Sources */,
+				3C820773264FCA2D00FDFB22 /* RatingDisplay.swift in Sources */,
+				3C1FA48B264EA22F007D80E9 /* RatingControl.swift in Sources */,
 				3C1FA485264AC0D5007D80E9 /* Extension + UITextField.swift in Sources */,
 				3CEE102C2647A20C0088BBAE /* PlaceModel.swift in Sources */,
 				3CEE10352647BAF50088BBAE /* DescriptionTableViewController.swift in Sources */,
 				3CEE10312647B3E70088BBAE /* Extension + UILabel.swift in Sources */,
+				3C1FA487264C2052007D80E9 /* StorageManager.swift in Sources */,
 				3CEE101326479F8A0088BBAE /* AppDelegate.swift in Sources */,
 				3CEE102E2647A7660088BBAE /* PlaceListTableViewCell.swift in Sources */,
 				3CEE10332647B8220088BBAE /* Extension + UIImageView.swift in Sources */,
