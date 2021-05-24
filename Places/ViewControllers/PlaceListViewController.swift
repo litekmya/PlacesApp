@@ -20,6 +20,7 @@ class PlaceListViewController: UIViewController {
     
     private var heightOfRows: CGFloat = 0
     private var spacing: CGFloat = 32
+    private var sorting = true
     
     private var searchController = UISearchController(searchResultsController: nil)
     private var searchBarIsEmpty: Bool {
@@ -43,6 +44,7 @@ class PlaceListViewController: UIViewController {
         getDataForPlaces()
         setup(tableView: tableView)
         setup(searchController: searchController)
+        setup(barButton: ratingButton)
     }
     
     //MARK:- Navigations
@@ -74,6 +76,11 @@ class PlaceListViewController: UIViewController {
         places = StorageManager.shared.realm.objects(Place.self)
     }
     
+    private func setup(barButton: UIBarButtonItem) {
+        barButton.image = #imageLiteral(resourceName: "fillStarNormalSize")
+        barButton.tintColor = #colorLiteral(red: 0.9791182876, green: 0.7888242602, blue: 0.09157992154, alpha: 1)
+    }
+    
     //MARK:- IBOutlets
     @IBAction func sortWithSegmentedControl(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
@@ -86,6 +93,20 @@ class PlaceListViewController: UIViewController {
     }
     
     @IBAction func sortWithRating(_ sender: Any) {
+        sorting.toggle()
+
+        if sorting {
+            ratingButton.image = #imageLiteral(resourceName: "starSmallSize")
+            
+            places = places.sorted(byKeyPath: "rating", ascending: false)
+        } else {
+            ratingButton.image = #imageLiteral(resourceName: "fillStarNormalSize")
+            
+            places = places.sorted(byKeyPath: "rating", ascending: true)
+        }
+        
+        ratingButton.tintColor = #colorLiteral(red: 0.9809029698, green: 0.7895529866, blue: 0.08980043977, alpha: 1)
+        tableView.reloadData()
     }
     
     
@@ -111,7 +132,7 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.typeLabel.text = place.type
         cell.ratingDisplay.rating = place.rating
         
-        cell.placeImageView.getDataFor(imageView: cell.placeImageView, from: place)
+        cell.placeImageView.getDataFor(imageView: cell.placeImageView, from: place, with: CGSize(width: 75, height: 75))
         
         heightOfRows = cell.placeImageView.frame.height + spacing
         

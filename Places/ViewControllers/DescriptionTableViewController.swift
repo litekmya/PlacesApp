@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class DescriptionTableViewController: UITableViewController {
     
@@ -46,6 +47,13 @@ class DescriptionTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //MARK:- TableViewDelegate
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 0 {
+            showAlert()
+        }
+    }
     
     //MARK:- Public Methods
     func saveData() {
@@ -112,16 +120,14 @@ class DescriptionTableViewController: UITableViewController {
             
             ratingControl.rating = Int(currentPlace.rating)
     
-            placeImageView.getDataFor(imageView: placeImageView, from: currentPlace)
+            placeImageView.getDataFor(imageView: placeImageView,
+                                      from: currentPlace,
+                                      with: CGSize(width: placeImageView.frame.width, height: placeImageView.frame.height))
             
             saveButton.isEnabled = true
         } else {
             placeImageView.image = #imageLiteral(resourceName: "cameraPlug")
         }
-    }
-    
-    private func getDataForImageData() {
-            
     }
 }
 
@@ -140,6 +146,99 @@ extension DescriptionTableViewController: UITextFieldDelegate {
         } else {
             saveButton.isEnabled = true
         }
+    }
+}
+
+    //MARK:- Alert Controller
+extension DescriptionTableViewController {
+    
+    private func showAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { [unowned self]_ in
+            self.chooseImagePicker(sourceType: .camera)
+        }
+        let photoAction = UIAlertAction(title: "Photo", style: .default) { [unowned self] _ in
+            self.choosePHPicker()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(cameraAction)
+        alert.addAction(photoAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
+    }
+}
+
+    //MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension DescriptionTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[.editedImage] as! UIImage
+        
+        placeImageView.image = image
+        
+        dismiss(animated: true)
+    }
+    
+    private func chooseImagePicker(sourceType: UIImagePickerController.SourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = sourceType
+            imagePicker.delegate = self
+            
+            present(imagePicker, animated: true)
+        }
+    }
+}
+
+    //MARK:-PHPickerViewControllerDelegate
+extension DescriptionTableViewController: PHPickerViewControllerDelegate {
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        dismiss(animated: true)
+        
+        let itemProviders = results.map(\.itemProvider)
+        
+        for provider in itemProviders {
+            if provider.canLoadObject(ofClass: UIImage.self) {
+                provider.loadObject(ofClass: UIImage.self) { image, error in
+                    if let error = error {
+                        print(error.localizedDescription)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        if let image = image as? UIImage {
+                            self.placeImageView.image = nil
+                            
+                            var imageData = Data(image.jpegData(compressionQuality: 1)!)
+                            let imageSize = imageData.count
+                            
+                            if imageSize > 4000 {
+                                imageData = Data(image.jpegData(compressionQuality: 0.1)!)
+                            }
+                            
+                            self.placeImageView.image = UIImage(data: imageData)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    private func choosePHPicker() {
+        var configuration = PHPickerConfiguration()
+        configuration.filter = .images
+        configuration.selectionLimit = 1
+    
+        
+        let picker = PHPickerViewController(configuration: configuration)
+        picker.delegate = self
+        
+        present(picker, animated: true)
     }
 }
 

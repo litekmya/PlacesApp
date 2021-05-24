@@ -1,11 +1,11 @@
 {
   "images" : [
     {
+      "filename" : "fillStarNormalSize.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "image-512.png",
       "idiom" : "universal",
       "scale" : "2x"
     },

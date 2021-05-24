@@ -29,6 +29,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="M70-dS-w1P">
                                 <rect key="frame" x="0.0" y="179" width="414" height="717"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" red="0.94901960784313721" green="0.79607843137254897" blue="0.28627450980392155" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="placeListCell" rowHeight="103" id="c5G-z6-bfR" customClass="PlaceListTableViewCell" customModule="Places" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="24.5" width="414" height="103"/>
@@ -37,15 +38,15 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aev-2y-XGX">
-                                                    <rect key="frame" x="16" y="14" width="75" height="75"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aev-2y-XGX">
+                                                    <rect key="frame" x="16" y="14" width="75" height="74"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="75" id="JZj-QA-A48"/>
+                                                        <constraint firstAttribute="height" constant="74" id="JZj-QA-A48"/>
                                                         <constraint firstAttribute="width" constant="75" id="Nbx-Up-v7p"/>
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="62.5" placeholderIntrinsicHeight="65" axis="vertical" distribution="fillEqually" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="RaN-kd-OzA">
-                                                    <rect key="frame" x="99" y="19" width="122" height="65"/>
+                                                    <rect key="frame" x="99" y="19" width="176" height="65"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i2u-H9-J3w">
                                                             <rect key="frame" x="0.0" y="0.0" width="45" height="17.5"/>
@@ -69,12 +70,15 @@
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="166.5" placeholderIntrinsicHeight="63" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Gkx-PJ-tNo" customClass="RatingDisplay" customModule="Places" customModuleProvider="target">
                                                     <rect key="frame" x="291" y="45" width="107" height="13"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="107" id="Mne-Hv-e6Q"/>
+                                                    </constraints>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="aev-2y-XGX" firstAttribute="leading" secondItem="C1L-4P-0Hf" secondAttribute="leading" constant="16" id="9hN-ao-tsx"/>
                                                 <constraint firstItem="aev-2y-XGX" firstAttribute="centerY" secondItem="C1L-4P-0Hf" secondAttribute="centerY" id="Ey6-oK-sbk"/>
-                                                <constraint firstItem="Gkx-PJ-tNo" firstAttribute="leading" secondItem="RaN-kd-OzA" secondAttribute="trailing" constant="70" id="OSD-f7-tDQ"/>
+                                                <constraint firstItem="Gkx-PJ-tNo" firstAttribute="leading" secondItem="RaN-kd-OzA" secondAttribute="trailing" constant="16" id="OSD-f7-tDQ"/>
                                                 <constraint firstItem="RaN-kd-OzA" firstAttribute="leading" secondItem="aev-2y-XGX" secondAttribute="trailing" constant="8" id="Ue6-wW-GLc"/>
                                                 <constraint firstItem="RaN-kd-OzA" firstAttribute="top" secondItem="C1L-4P-0Hf" secondAttribute="topMargin" constant="8" id="Vr6-TH-yUb"/>
                                                 <constraint firstItem="Gkx-PJ-tNo" firstAttribute="top" secondItem="C1L-4P-0Hf" secondAttribute="top" constant="45" id="fIc-yy-wfg"/>
@@ -108,7 +112,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Place list" id="jUf-TG-dsm">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="ih9-ra-Nkm">
+                        <barButtonItem key="leftBarButtonItem" id="ih9-ra-Nkm">
                             <connections>
                                 <action selector="sortWithRating:" destination="BYZ-38-t0r" id="c22-F1-dQA"/>
                             </connections>
@@ -146,7 +150,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zOa-M8-5bX">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zOa-M8-5bX">
                                                     <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
                                                 </imageView>
                                             </subviews>
