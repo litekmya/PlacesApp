@@ -12,6 +12,8 @@
 		3C1FA487264C2052007D80E9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FA486264C2052007D80E9 /* StorageManager.swift */; };
 		3C1FA48B264EA22F007D80E9 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FA48A264EA22F007D80E9 /* RatingControl.swift */; };
 		3C820773264FCA2D00FDFB22 /* RatingDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */; };
+		3CCC4D7F265BE18F00C318D8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC4D7E265BE18F00C318D8 /* MapViewController.swift */; };
+		3CCC4D81265D3A3600C318D8 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC4D80265D3A3600C318D8 /* MapManager.swift */; };
 		3CEE101326479F8A0088BBAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE101226479F8A0088BBAE /* AppDelegate.swift */; };
 		3CEE101526479F8A0088BBAE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE101426479F8A0088BBAE /* SceneDelegate.swift */; };
 		3CEE101726479F8A0088BBAE /* PlaceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE101626479F8A0088BBAE /* PlaceListViewController.swift */; };
@@ -30,6 +32,8 @@
 		3C1FA486264C2052007D80E9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		3C1FA48A264EA22F007D80E9 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingDisplay.swift; sourceTree = "<group>"; };
+		3CCC4D7E265BE18F00C318D8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		3CCC4D80265D3A3600C318D8 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		3CEE100F26479F8A0088BBAE /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3CEE101226479F8A0088BBAE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3CEE101426479F8A0088BBAE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,7 @@
 			isa = PBXGroup;
 			children = (
 				3C1FA486264C2052007D80E9 /* StorageManager.swift */,
+				3CCC4D80265D3A3600C318D8 /* MapManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 				3CEE10342647BAF50088BBAE /* DescriptionTableViewController.swift */,
 				3C1FA48A264EA22F007D80E9 /* RatingControl.swift */,
 				3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */,
+				3CCC4D7E265BE18F00C318D8 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -292,8 +298,10 @@
 				3C820773264FCA2D00FDFB22 /* RatingDisplay.swift in Sources */,
 				3C1FA48B264EA22F007D80E9 /* RatingControl.swift in Sources */,
 				3C1FA485264AC0D5007D80E9 /* Extension + UITextField.swift in Sources */,
+				3CCC4D81265D3A3600C318D8 /* MapManager.swift in Sources */,
 				3CEE102C2647A20C0088BBAE /* PlaceModel.swift in Sources */,
 				3CEE10352647BAF50088BBAE /* DescriptionTableViewController.swift in Sources */,
+				3CCC4D7F265BE18F00C318D8 /* MapViewController.swift in Sources */,
 				3CEE10312647B3E70088BBAE /* Extension + UILabel.swift in Sources */,
 				3C1FA487264C2052007D80E9 /* StorageManager.swift in Sources */,
 				3CEE101326479F8A0088BBAE /* AppDelegate.swift in Sources */,

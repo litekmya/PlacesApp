@@ -77,7 +77,7 @@ class PlaceListViewController: UIViewController {
     }
     
     private func setup(barButton: UIBarButtonItem) {
-        barButton.image = #imageLiteral(resourceName: "fillStarNormalSize")
+        barButton.image = #imageLiteral(resourceName: "starSmallSize")
         barButton.tintColor = #colorLiteral(red: 0.9791182876, green: 0.7888242602, blue: 0.09157992154, alpha: 1)
     }
     
@@ -132,7 +132,7 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
         cell.typeLabel.text = place.type
         cell.ratingDisplay.rating = place.rating
         
-        cell.placeImageView.getDataFor(imageView: cell.placeImageView, from: place, with: CGSize(width: 75, height: 75))
+        cell.placeImageView.getDataFor(imageView: cell.placeImageView, from: place)
         
         heightOfRows = cell.placeImageView.frame.height + spacing
         

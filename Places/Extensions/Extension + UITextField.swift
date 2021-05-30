@@ -15,5 +15,6 @@ extension UITextField {
                placeholder: String) {
         textField.font = UIFont.systemFont(ofSize: fontSize, weight: weight)
         textField.placeholder = placeholder
+        textField.autocapitalizationType = .sentences
     }
 }

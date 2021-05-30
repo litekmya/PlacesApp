@@ -22,13 +22,17 @@ class DescriptionTableViewController: UITableViewController {
     @IBOutlet weak var typeTextField: UITextField!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var goToAddressButton: UIButton!
     
     @IBOutlet weak var ratingControl: RatingControl!
     
     //MARK:- Public properties
     var currentPlace: Place!
     
-    //MARK:- IBOutlets
+    //MARK:- Private properties
+    private let segueIdentifier = "goToAddressSegue"
+    
+    //MARK:- Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -38,15 +42,21 @@ class DescriptionTableViewController: UITableViewController {
         getData()
     }
 
-    /*
     // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == segueIdentifier {
+            let mapVC = segue.destination as? MapViewController
+            
+            mapVC?.place.name = nameTextField.text!
+            mapVC?.place.address = addressTextField.text
+            mapVC?.place.type = typeTextField.text
+            mapVC?.place.imageData = placeImageView.image?.pngData()
+            
+            mapVC?.segueIdentifier = segueIdentifier
+            
+            
+        }
     }
-    */
     
     //MARK:- TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -121,13 +131,17 @@ class DescriptionTableViewController: UITableViewController {
             ratingControl.rating = Int(currentPlace.rating)
     
             placeImageView.getDataFor(imageView: placeImageView,
-                                      from: currentPlace,
-                                      with: CGSize(width: placeImageView.frame.width, height: placeImageView.frame.height))
+                                      from: currentPlace)
             
             saveButton.isEnabled = true
         } else {
             placeImageView.image = #imageLiteral(resourceName: "cameraPlug")
         }
+    }
+    
+    //MARK:- IBOutlets
+    @IBAction func goToAddressAction(_ sender: Any) {
+        
     }
 }
 
