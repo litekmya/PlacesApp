@@ -30,7 +30,7 @@ class DescriptionTableViewController: UITableViewController {
     var currentPlace: Place!
     
     //MARK:- Private properties
-    private let segueIdentifier = "goToAddressSegue"
+    private let segueIdentifier = "goToAddress"
     
     //MARK:- Lifecycle
     override func viewDidLoad() {
@@ -44,17 +44,16 @@ class DescriptionTableViewController: UITableViewController {
 
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier, let mapVC = segue.destination as? MapViewController else { return }
+        
+        mapVC.segueIdentifier = identifier
+        mapVC.mapViewControllerDelegate = self
+        
         if segue.identifier == segueIdentifier {
-            let mapVC = segue.destination as? MapViewController
-            
-            mapVC?.place.name = nameTextField.text!
-            mapVC?.place.address = addressTextField.text
-            mapVC?.place.type = typeTextField.text
-            mapVC?.place.imageData = placeImageView.image?.pngData()
-            
-            mapVC?.segueIdentifier = segueIdentifier
-            
-            
+            mapVC.place.name = nameTextField.text!
+            mapVC.place.address = addressTextField.text
+            mapVC.place.type = typeTextField.text
+            mapVC.place.imageData = placeImageView.image?.pngData()
         }
     }
     
@@ -256,4 +255,10 @@ extension DescriptionTableViewController: PHPickerViewControllerDelegate {
     }
 }
 
-
+    //MARK:- MapViewDelegate
+extension DescriptionTableViewController: MapViewControllerDelegate {
+    
+    func getAddress(_ address: String?) {
+        addressTextField.text = address
+    }
+}

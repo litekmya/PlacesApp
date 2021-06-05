@@ -161,7 +161,7 @@
                                                     </constraints>
                                                     <state key="normal" image="mapMarker"/>
                                                     <connections>
-                                                        <segue destination="epq-Pv-H3z" kind="showDetail" identifier="goToAddressSegue" id="BV0-8i-xTv"/>
+                                                        <segue destination="epq-Pv-H3z" kind="showDetail" identifier="goToAddress" id="BV0-8i-xTv"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -239,7 +239,7 @@
                                                     <state key="normal" image="location"/>
                                                     <connections>
                                                         <action selector="goToAddressAction:" destination="zK7-On-34p" eventType="touchUpInside" id="B3z-TP-opv"/>
-                                                        <segue destination="epq-Pv-H3z" kind="showDetail" identifier="findToAddress" id="iR6-75-92E"/>
+                                                        <segue destination="epq-Pv-H3z" kind="showDetail" identifier="findAddress" id="iR6-75-92E"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -366,20 +366,80 @@
                                     <action selector="cancelButtonAction:" destination="epq-Pv-H3z" eventType="touchUpInside" id="htk-kr-w94"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LsM-SO-xGP">
+                                <rect key="frame" x="349" y="763" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="Oqm-5d-vUI"/>
+                                    <constraint firstAttribute="height" constant="45" id="bYv-fr-dfs"/>
+                                </constraints>
+                                <state key="normal" image="defineLocation"/>
+                                <connections>
+                                    <action selector="centerViewInUserLocation:" destination="epq-Pv-H3z" eventType="touchUpInside" id="K0i-S1-KnL"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow" translatesAutoresizingMaskIntoConstraints="NO" id="She-Ij-Fra">
+                                <rect key="frame" x="189.5" y="383.5" width="35" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="G8Y-2j-QKQ"/>
+                                    <constraint firstAttribute="width" constant="35" id="yCD-ru-hEA"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="FY4-aD-LmI">
+                                <rect key="frame" x="20" y="125" width="375" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g85-rj-Rpg">
+                                <rect key="frame" x="178" y="761" width="58" height="42"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" systemColor="labelColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="doneButtonPressed:" destination="epq-Pv-H3z" eventType="touchUpInside" id="r4W-fB-qAq"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nf2-C6-rJp">
+                                <rect key="frame" x="184.5" y="763" width="45" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="0VB-kX-U77"/>
+                                    <constraint firstAttribute="height" constant="45" id="b9h-Ku-rgE"/>
+                                </constraints>
+                                <state key="normal" image="navigationArrow"/>
+                                <connections>
+                                    <action selector="navigationButtonPressed:" destination="epq-Pv-H3z" eventType="touchUpInside" id="Wga-nK-tSS"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kpm-Cd-TMq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="kpm-Cd-TMq" firstAttribute="bottom" secondItem="g85-rj-Rpg" secondAttribute="bottom" constant="5" id="20Z-Jf-npP"/>
+                            <constraint firstItem="She-Ij-Fra" firstAttribute="centerX" secondItem="Acg-B7-nKT" secondAttribute="centerX" id="6Rb-iN-lp8"/>
                             <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" secondItem="Yrn-Ok-SyR" secondAttribute="trailing" constant="20" id="6T0-Qo-ZiB"/>
+                            <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" secondItem="LsM-SO-xGP" secondAttribute="trailing" constant="20" id="FTe-L6-diE"/>
                             <constraint firstItem="Yse-9G-rw3" firstAttribute="leading" secondItem="kpm-Cd-TMq" secondAttribute="leading" id="FzH-Fv-tXW"/>
                             <constraint firstAttribute="bottom" secondItem="Yse-9G-rw3" secondAttribute="bottom" id="Gal-qV-e8X"/>
+                            <constraint firstItem="FY4-aD-LmI" firstAttribute="top" secondItem="kpm-Cd-TMq" secondAttribute="top" constant="125" id="Gbc-IK-rso"/>
                             <constraint firstItem="Yse-9G-rw3" firstAttribute="top" secondItem="Acg-B7-nKT" secondAttribute="top" id="HTB-5F-jLM"/>
+                            <constraint firstItem="LsM-SO-xGP" firstAttribute="bottom" secondItem="kpm-Cd-TMq" secondAttribute="bottom" id="I2H-yP-PMb"/>
+                            <constraint firstItem="nf2-C6-rJp" firstAttribute="bottom" secondItem="kpm-Cd-TMq" secondAttribute="bottom" id="K2K-Cc-UfN"/>
+                            <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" secondItem="FY4-aD-LmI" secondAttribute="trailing" constant="19" id="cXl-tL-E0j"/>
+                            <constraint firstItem="nf2-C6-rJp" firstAttribute="centerX" secondItem="Acg-B7-nKT" secondAttribute="centerX" id="d4C-xr-Tbb"/>
                             <constraint firstItem="Yrn-Ok-SyR" firstAttribute="top" secondItem="kpm-Cd-TMq" secondAttribute="top" constant="20" id="ebZ-Hh-Oba"/>
+                            <constraint firstItem="She-Ij-Fra" firstAttribute="centerY" secondItem="Acg-B7-nKT" secondAttribute="centerY" constant="-20" id="gc3-0r-w8f"/>
+                            <constraint firstItem="FY4-aD-LmI" firstAttribute="leading" secondItem="kpm-Cd-TMq" secondAttribute="leading" constant="20" id="j26-hL-EPt"/>
+                            <constraint firstItem="g85-rj-Rpg" firstAttribute="centerX" secondItem="Acg-B7-nKT" secondAttribute="centerX" id="l3g-m1-3Yx"/>
                             <constraint firstItem="Yse-9G-rw3" firstAttribute="trailing" secondItem="kpm-Cd-TMq" secondAttribute="trailing" id="x32-QM-XYI"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="currentAddressLabel" destination="FY4-aD-LmI" id="I1Y-6U-1Vs"/>
+                        <outlet property="doneButton" destination="g85-rj-Rpg" id="jyo-cE-H2l"/>
+                        <outlet property="mapPinImageView" destination="She-Ij-Fra" id="4z7-mE-DGd"/>
                         <outlet property="mapView" destination="Yse-9G-rw3" id="eU4-dY-cPD"/>
+                        <outlet property="navigationButton" destination="nf2-C6-rJp" id="8bA-Or-Sfo"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ag8-It-2Od" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -435,9 +495,15 @@
         <segue reference="h5x-E7-DLN"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="arrow" width="128" height="128"/>
+        <image name="defineLocation" width="48" height="48"/>
         <image name="location" width="48" height="48"/>
         <image name="mapMarker" width="512" height="512"/>
         <image name="multiply" catalog="system" width="128" height="111"/>
+        <image name="navigationArrow" width="512" height="512"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
