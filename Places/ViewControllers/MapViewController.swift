@@ -15,18 +15,23 @@ protocol MapViewControllerDelegate {
 
 class MapViewController: UIViewController {
     
+    //MARK: - IBOutlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mapPinImageView: UIImageView!
+    
     @IBOutlet weak var currentAddressLabel: UILabel!
+    @IBOutlet weak var distanseLabel: UILabel!
+    @IBOutlet weak var timeIntervalLabel: UILabel!
+    
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var navigationButton: UIButton!
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     var place = Place()
     var segueIdentifier = ""
     var mapViewControllerDelegate: MapViewControllerDelegate?
 
-    //MARK:- Private properties
+    //MARK: - Private properties
     private let mapManager = MapManager()
     private let annotationIdentifier = "annotationIdentifier"
     private var previusLocation: CLLocation? {
@@ -38,24 +43,26 @@ class MapViewController: UIViewController {
         }
     }
     
-    //MARK:- Lifecycle
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        currentAddressLabel.text = ""
-        goToAddress()
-        
-        mapView.delegate = self
+        setupMapView()
     }
     
-    //MARK:- Private Methods
-    private func goToAddress() {
+    //MARK: - Private Methods
+    private func setupMapView() {
         navigationButton.isHidden = true
+        currentAddressLabel.text = ""
+        
+        distanseLabel.isHidden = true
+        timeIntervalLabel.isHidden = true
+        
+        mapView.delegate = self
         mapManager.locationManager.delegate = self
         
         if segueIdentifier == "goToAddress" {
             mapManager.setupPlaceMark(place: place, mapView: mapView)
-            
             
             mapPinImageView.isHidden = true
             currentAddressLabel.isHidden = true
@@ -64,7 +71,7 @@ class MapViewController: UIViewController {
         }
     }
     
-    //MARK:- IBOutlets
+    //MARK: - IBOutlets action
     
     @IBAction func cancelButtonAction(_ sender: Any) {
         dismiss(animated: true)
@@ -80,13 +87,16 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func navigationButtonPressed(_ sender: Any) {
-        mapManager.getDirections(mapView: mapView) { currentLocation in
+        mapManager.getDirections(
+            mapView: mapView,
+            distanseLabel: distanseLabel,
+            timeIntervalLabel: timeIntervalLabel) { currentLocation in
             previusLocation = currentLocation
         }
     }
 }
 
-    //MARK:- MKMapViewDelegate
+    //MARK: - MKMapViewDelegate
 extension MapViewController: MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -131,9 +141,7 @@ extension MapViewController: MKMapViewDelegate {
     }
 }
     
-
-
-    //MARK:- CLLocationManagerDelegate
+    //MARK: - CLLocationManagerDelegate
 extension MapViewController: CLLocationManagerDelegate {
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {

@@ -9,19 +9,19 @@ import UIKit
 import MapKit
 
 class MapManager {
-    //MARK:- Public properties
+    //MARK: - Public properties
     let locationManager = CLLocationManager()
     let titleForAlert = "Location services are disabled"
     let messageForAlert = "To enable it go: Setting -> Privacy -> Location services and turn On"
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private var distanceInMeters = 500.0
     private var directionsArray: [MKDirections] = []
     private var placeLocation: CLLocationCoordinate2D?
     
     
     
-    //MARK:- Public Methods
+    //MARK: - Public Methods
     // Создание метки по адресу
     func setupPlaceMark(place: Place, mapView: MKMapView) {
         guard let location = place.address else { return }
@@ -63,23 +63,27 @@ class MapManager {
             }
             
             guard let placemark = placemarks?.first else { return }
+            let cityName = placemark.locality
             let streetName = placemark.thoroughfare
             let buildNumber = placemark.subThoroughfare
             
             DispatchQueue.main.async {
-                if streetName != nil && buildNumber != nil {
-                    label.text = "\(streetName!), \(buildNumber!)"
-                } else if streetName != nil {
-                    label.text = streetName!
+                if cityName != nil, streetName != nil && buildNumber != nil {
+                    label.text = "\(cityName!), \(streetName!), \(buildNumber!)"
+                } else if cityName != nil, streetName != nil {
+                    label.text = "\(cityName!), \(streetName!)"
+                } else if cityName != nil {
+                    label.text = cityName
                 } else {
                     label.text = ""
                 }
+                
             }
         }
     }
     
     // Построение маршрута
-    func getDirections(mapView: MKMapView, currentLocation: (CLLocation) ->()) {
+    func getDirections(mapView: MKMapView, distanseLabel: UILabel, timeIntervalLabel: UILabel, currentLocation: (CLLocation) ->()) {
         guard let userLocation = locationManager.location?.coordinate else {
             showAlert(title: "Error", message: "Current location is not found")
             return
@@ -114,7 +118,16 @@ class MapManager {
                 mapView.setVisibleMapRect(route.polyline.boundingMapRect, animated: true)
                 
                 let distanse = route.distance
+                
                 let timeInterval = route.expectedTravelTime
+                let timeWithSeconds = self.getHoursMinutesOfSeconds(time: Int(timeInterval))
+                
+                distanseLabel.text = "\(distanse) metrs"
+                distanseLabel.isHidden = false
+                
+                timeIntervalLabel.text = timeWithSeconds
+                timeIntervalLabel.isHidden = false
+                
             }
         }
     }
@@ -143,7 +156,7 @@ class MapManager {
     }
     
     
-    //MARK:- Private Methods
+    //MARK: - Private Methods
     // Создание запроса для построения маршрута
     private func createDirectionRequest(placeLocation: CLLocationCoordinate2D?, coordinate: CLLocationCoordinate2D) -> MKDirections.Request? {
         guard let destinationCoordinate = placeLocation else { return nil }
@@ -186,9 +199,17 @@ class MapManager {
         let _ = directionsArray.map { $0.cancel() }
         directionsArray.removeAll()
     }
+    
+    private func getHoursMinutesOfSeconds(time: Int) -> String {
+        let hours = time / 3600
+        let minutes = (time / 3600) % 60
+        let seconds = time % 60
+        
+        return String(format: "%0.2d:%0.2d:%0.2d", hours, minutes, seconds)
+    }
 }
 
-//MARK:- AlertController
+//MARK: - AlertController
 extension MapManager {
     
     func showAlert(title: String, message: String) {

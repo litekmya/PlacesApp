@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nXF-DS-czA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nXF-DS-czA">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -32,7 +33,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="placeListCell" rowHeight="103" id="c5G-z6-bfR" customClass="PlaceListTableViewCell" customModule="Places" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="103"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="103"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="c5G-z6-bfR" id="C1L-4P-0Hf">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="103"/>
@@ -144,7 +145,7 @@
                             <tableViewSection id="iOc-mL-qWV">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="270" id="6hu-dd-20W">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="270"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="414" height="270"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6hu-dd-20W" id="Z59-1g-ASE">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="270"/>
@@ -176,7 +177,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="105" id="nNQ-Fj-edi">
-                                        <rect key="frame" x="0.0" y="294.5" width="414" height="105"/>
+                                        <rect key="frame" x="0.0" y="314.5" width="414" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nNQ-Fj-edi" id="xCa-f7-NXk">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
@@ -208,7 +209,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="105" id="yMM-Z2-6bd">
-                                        <rect key="frame" x="0.0" y="399.5" width="414" height="105"/>
+                                        <rect key="frame" x="0.0" y="419.5" width="414" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yMM-Z2-6bd" id="vad-mD-9qR">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
@@ -238,7 +239,6 @@
                                                     </constraints>
                                                     <state key="normal" image="location"/>
                                                     <connections>
-                                                        <action selector="goToAddressAction:" destination="zK7-On-34p" eventType="touchUpInside" id="B3z-TP-opv"/>
                                                         <segue destination="epq-Pv-H3z" kind="showDetail" identifier="findAddress" id="iR6-75-92E"/>
                                                     </connections>
                                                 </button>
@@ -255,7 +255,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="105" id="OAD-nx-KMy">
-                                        <rect key="frame" x="0.0" y="504.5" width="414" height="105"/>
+                                        <rect key="frame" x="0.0" y="524.5" width="414" height="105"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OAD-nx-KMy" id="gOo-g5-5Xt">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
@@ -287,7 +287,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="100" id="r9N-vf-abc">
-                                        <rect key="frame" x="0.0" y="609.5" width="414" height="100"/>
+                                        <rect key="frame" x="0.0" y="629.5" width="414" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r9N-vf-abc" id="yqo-sX-J0x">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
@@ -411,11 +411,26 @@
                                     <action selector="navigationButtonPressed:" destination="epq-Pv-H3z" eventType="touchUpInside" id="Wga-nK-tSS"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distanse" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VpH-4A-V1z">
+                                <rect key="frame" x="20" y="637" width="66" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TimeInterval" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="AXE-KR-9Jj">
+                                <rect key="frame" x="20" y="687.5" width="93.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kpm-Cd-TMq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="VpH-4A-V1z" secondAttribute="trailing" symbolic="YES" id="1oL-71-H2s"/>
                             <constraint firstItem="kpm-Cd-TMq" firstAttribute="bottom" secondItem="g85-rj-Rpg" secondAttribute="bottom" constant="5" id="20Z-Jf-npP"/>
+                            <constraint firstItem="kpm-Cd-TMq" firstAttribute="bottom" secondItem="AXE-KR-9Jj" secondAttribute="bottom" constant="100" id="5dt-w7-BdN"/>
+                            <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="AXE-KR-9Jj" secondAttribute="trailing" symbolic="YES" id="6Mg-dc-6QA"/>
                             <constraint firstItem="She-Ij-Fra" firstAttribute="centerX" secondItem="Acg-B7-nKT" secondAttribute="centerX" id="6Rb-iN-lp8"/>
                             <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" secondItem="Yrn-Ok-SyR" secondAttribute="trailing" constant="20" id="6T0-Qo-ZiB"/>
                             <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" secondItem="LsM-SO-xGP" secondAttribute="trailing" constant="20" id="FTe-L6-diE"/>
@@ -425,21 +440,26 @@
                             <constraint firstItem="Yse-9G-rw3" firstAttribute="top" secondItem="Acg-B7-nKT" secondAttribute="top" id="HTB-5F-jLM"/>
                             <constraint firstItem="LsM-SO-xGP" firstAttribute="bottom" secondItem="kpm-Cd-TMq" secondAttribute="bottom" id="I2H-yP-PMb"/>
                             <constraint firstItem="nf2-C6-rJp" firstAttribute="bottom" secondItem="kpm-Cd-TMq" secondAttribute="bottom" id="K2K-Cc-UfN"/>
+                            <constraint firstItem="AXE-KR-9Jj" firstAttribute="leading" secondItem="kpm-Cd-TMq" secondAttribute="leading" constant="20" id="UNT-RA-RdW"/>
                             <constraint firstItem="kpm-Cd-TMq" firstAttribute="trailing" secondItem="FY4-aD-LmI" secondAttribute="trailing" constant="19" id="cXl-tL-E0j"/>
                             <constraint firstItem="nf2-C6-rJp" firstAttribute="centerX" secondItem="Acg-B7-nKT" secondAttribute="centerX" id="d4C-xr-Tbb"/>
                             <constraint firstItem="Yrn-Ok-SyR" firstAttribute="top" secondItem="kpm-Cd-TMq" secondAttribute="top" constant="20" id="ebZ-Hh-Oba"/>
+                            <constraint firstItem="AXE-KR-9Jj" firstAttribute="top" secondItem="VpH-4A-V1z" secondAttribute="bottom" constant="30" id="gUP-aH-LO8"/>
                             <constraint firstItem="She-Ij-Fra" firstAttribute="centerY" secondItem="Acg-B7-nKT" secondAttribute="centerY" constant="-20" id="gc3-0r-w8f"/>
                             <constraint firstItem="FY4-aD-LmI" firstAttribute="leading" secondItem="kpm-Cd-TMq" secondAttribute="leading" constant="20" id="j26-hL-EPt"/>
                             <constraint firstItem="g85-rj-Rpg" firstAttribute="centerX" secondItem="Acg-B7-nKT" secondAttribute="centerX" id="l3g-m1-3Yx"/>
+                            <constraint firstItem="VpH-4A-V1z" firstAttribute="leading" secondItem="kpm-Cd-TMq" secondAttribute="leading" constant="20" id="qK7-bE-wb2"/>
                             <constraint firstItem="Yse-9G-rw3" firstAttribute="trailing" secondItem="kpm-Cd-TMq" secondAttribute="trailing" id="x32-QM-XYI"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="currentAddressLabel" destination="FY4-aD-LmI" id="I1Y-6U-1Vs"/>
+                        <outlet property="distanseLabel" destination="VpH-4A-V1z" id="pvu-sn-4uL"/>
                         <outlet property="doneButton" destination="g85-rj-Rpg" id="jyo-cE-H2l"/>
                         <outlet property="mapPinImageView" destination="She-Ij-Fra" id="4z7-mE-DGd"/>
                         <outlet property="mapView" destination="Yse-9G-rw3" id="eU4-dY-cPD"/>
                         <outlet property="navigationButton" destination="nf2-C6-rJp" id="8bA-Or-Sfo"/>
+                        <outlet property="timeIntervalLabel" destination="AXE-KR-9Jj" id="dEf-go-wrO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ag8-It-2Od" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

@@ -10,7 +10,7 @@ import PhotosUI
 
 class DescriptionTableViewController: UITableViewController {
     
-    //MARK:- IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var placeImageView: UIImageView!
     
     @IBOutlet weak var namelabel: UILabel!
@@ -26,13 +26,13 @@ class DescriptionTableViewController: UITableViewController {
     
     @IBOutlet weak var ratingControl: RatingControl!
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     var currentPlace: Place!
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private let segueIdentifier = "goToAddress"
     
-    //MARK:- Lifecycle
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -57,14 +57,14 @@ class DescriptionTableViewController: UITableViewController {
         }
     }
     
-    //MARK:- TableViewDelegate
+    //MARK: - TableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             showAlert()
         }
     }
     
-    //MARK:- Public Methods
+    //MARK: - Public Methods
     func saveData() {
         let imageData = placeImageView.image?.pngData()
         
@@ -89,7 +89,7 @@ class DescriptionTableViewController: UITableViewController {
         }
     }
     
-    //MARK:- Private properties
+    //MARK: - Private methods
     private func setupLabels() {
         namelabel.setup(label: namelabel, fontsize: 23, weight: .medium)
         addressLabel.setup(label: addressLabel, fontsize: 23, weight: .medium)
@@ -137,14 +137,9 @@ class DescriptionTableViewController: UITableViewController {
             placeImageView.image = #imageLiteral(resourceName: "cameraPlug")
         }
     }
-    
-    //MARK:- IBOutlets
-    @IBAction func goToAddressAction(_ sender: Any) {
-        
-    }
 }
 
-    //MARK:- UItextFieldDelegate
+    //MARK: - UITextFieldDelegate
 extension DescriptionTableViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -162,7 +157,7 @@ extension DescriptionTableViewController: UITextFieldDelegate {
     }
 }
 
-    //MARK:- Alert Controller
+    //MARK: - Alert Controller
 extension DescriptionTableViewController {
     
     private func showAlert() {
@@ -185,7 +180,7 @@ extension DescriptionTableViewController {
     }
 }
 
-    //MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate
+    //MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
 extension DescriptionTableViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -208,7 +203,7 @@ extension DescriptionTableViewController: UIImagePickerControllerDelegate, UINav
     }
 }
 
-    //MARK:-PHPickerViewControllerDelegate
+    //MARK: - PHPickerViewControllerDelegate
 extension DescriptionTableViewController: PHPickerViewControllerDelegate {
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
@@ -255,7 +250,7 @@ extension DescriptionTableViewController: PHPickerViewControllerDelegate {
     }
 }
 
-    //MARK:- MapViewDelegate
+    //MARK: - MapViewDelegate
 extension DescriptionTableViewController: MapViewControllerDelegate {
     
     func getAddress(_ address: String?) {

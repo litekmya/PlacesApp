@@ -10,11 +10,11 @@ import RealmSwift
 
 class PlaceListViewController: UIViewController {
     
-    //MARK:- IBOutlets
+    //MARK: - IBOutlets
     @IBOutlet weak var ratingButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private var places: Results<Place>!
     private var currentPlaces: Results<Place>!
     
@@ -37,7 +37,7 @@ class PlaceListViewController: UIViewController {
         }
     }
     
-    //MARK:- Lifecycle
+    //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +47,7 @@ class PlaceListViewController: UIViewController {
         setup(barButton: ratingButton)
     }
     
-    //MARK:- Navigations
+    //MARK: - Navigations
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "descriptionCell" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -59,14 +59,15 @@ class PlaceListViewController: UIViewController {
             descriptionVC.title = place.name
         }
     }
+    
     @IBAction func unwindsegue(for unwindSegue: UIStoryboardSegue) {
-            let descriptionVC = unwindSegue.source as? DescriptionTableViewController
-            descriptionVC?.saveData()
-            
-            tableView.reloadData()
-        }
+        let descriptionVC = unwindSegue.source as? DescriptionTableViewController
+        descriptionVC?.saveData()
+        
+        tableView.reloadData()
+    }
 
-    //MARK:- Private Methods
+    //MARK: - Private Methods
     private func setup(tableView: UITableView) {
         tableView.delegate = self
         tableView.dataSource = self
@@ -81,7 +82,7 @@ class PlaceListViewController: UIViewController {
         barButton.tintColor = #colorLiteral(red: 0.9791182876, green: 0.7888242602, blue: 0.09157992154, alpha: 1)
     }
     
-    //MARK:- IBOutlets
+    //MARK: - IBOutlets actions
     @IBAction func sortWithSegmentedControl(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             places = places.sorted(byKeyPath: "date")
@@ -108,11 +109,9 @@ class PlaceListViewController: UIViewController {
         ratingButton.tintColor = #colorLiteral(red: 0.9809029698, green: 0.7895529866, blue: 0.08980043977, alpha: 1)
         tableView.reloadData()
     }
-    
-    
 }
 
-    //  MARK:- UITableViewDelegate, UITableViewDataSource
+    //  MARK: - UITableViewDelegate, UITableViewDataSource
 extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -157,7 +156,7 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
     }
 }
     
-    //MARK:- UISearchResultsUpdating
+    //MARK: - UISearchResultsUpdating
 extension PlaceListViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
