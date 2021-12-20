@@ -12,6 +12,8 @@
 		3C1FA487264C2052007D80E9 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FA486264C2052007D80E9 /* StorageManager.swift */; };
 		3C1FA48B264EA22F007D80E9 /* RatingControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1FA48A264EA22F007D80E9 /* RatingControl.swift */; };
 		3C820773264FCA2D00FDFB22 /* RatingDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */; };
+		3C97B563277008CD005D9322 /* ICloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97B562277008CD005D9322 /* ICloudManager.swift */; };
+		3CBA322F276A101B00FC0217 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBA322E276A101B00FC0217 /* CloudKit.framework */; };
 		3CCC4D7F265BE18F00C318D8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC4D7E265BE18F00C318D8 /* MapViewController.swift */; };
 		3CCC4D81265D3A3600C318D8 /* MapManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CCC4D80265D3A3600C318D8 /* MapManager.swift */; };
 		3CEE101326479F8A0088BBAE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CEE101226479F8A0088BBAE /* AppDelegate.swift */; };
@@ -32,6 +34,9 @@
 		3C1FA486264C2052007D80E9 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		3C1FA48A264EA22F007D80E9 /* RatingControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingControl.swift; sourceTree = "<group>"; };
 		3C820772264FCA2D00FDFB22 /* RatingDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingDisplay.swift; sourceTree = "<group>"; };
+		3C97B562277008CD005D9322 /* ICloudManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudManager.swift; sourceTree = "<group>"; };
+		3CBA322D276A0FBF00FC0217 /* Places.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Places.entitlements; sourceTree = "<group>"; };
+		3CBA322E276A101B00FC0217 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		3CCC4D7E265BE18F00C318D8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3CCC4D80265D3A3600C318D8 /* MapManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapManager.swift; sourceTree = "<group>"; };
 		3CEE100F26479F8A0088BBAE /* Places.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Places.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20333DC3F7182DDFD2CEED09 /* Pods_Places.framework in Frameworks */,
+				3CBA322F276A101B00FC0217 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +73,7 @@
 		218E4AE3E3E123F209BF164D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3CBA322E276A101B00FC0217 /* CloudKit.framework */,
 				870A0D51BE1B4FAABD1BF23A /* Pods_Places.framework */,
 			);
 			name = Frameworks;
@@ -77,6 +84,7 @@
 			children = (
 				3C1FA486264C2052007D80E9 /* StorageManager.swift */,
 				3CCC4D80265D3A3600C318D8 /* MapManager.swift */,
+				3C97B562277008CD005D9322 /* ICloudManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -147,6 +155,7 @@
 		3CEE10292647A0930088BBAE /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				3CBA322D276A0FBF00FC0217 /* Places.entitlements */,
 				3CEE101B26479F8C0088BBAE /* Assets.xcassets */,
 				3CEE102026479F8C0088BBAE /* Info.plist */,
 			);
@@ -308,6 +317,7 @@
 				3CEE102E2647A7660088BBAE /* PlaceListTableViewCell.swift in Sources */,
 				3CEE10332647B8220088BBAE /* Extension + UIImageView.swift in Sources */,
 				3CEE101526479F8A0088BBAE /* SceneDelegate.swift in Sources */,
+				3C97B563277008CD005D9322 /* ICloudManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +465,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Places/Sources/Places.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MMLYXGU647;
 				INFOPLIST_FILE = Places/Sources/Info.plist;
@@ -462,7 +473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tekmya.Places;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tekmya.PlacesICloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -475,6 +486,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Places/Sources/Places.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MMLYXGU647;
 				INFOPLIST_FILE = Places/Sources/Info.plist;
@@ -482,7 +494,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ru.tekmya.Places;
+				PRODUCT_BUNDLE_IDENTIFIER = ru.tekmya.PlacesICloud;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

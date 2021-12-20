@@ -66,7 +66,8 @@ class DescriptionTableViewController: UITableViewController {
     
     //MARK: - Public Methods
     func saveData() {
-        let imageData = placeImageView.image?.pngData()
+        guard let image = placeImageView.image else { return }
+        let imageData = image.pngData()
         
         let place = Place(name: nameTextField.text!,
                           address: addressTextField.text,
@@ -85,6 +86,8 @@ class DescriptionTableViewController: UITableViewController {
                 currentPlace.rating = place.rating
             }
         } else {
+            ICloudManager.saveDataToCloud(place: place, image: image)
+            print("works")
             StorageManager.shared.save(place: place)
         }
     }
