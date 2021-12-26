@@ -6,9 +6,11 @@
 //
 
 import RealmSwift
+import CloudKit
 
 class Place: Object {
     
+    @objc dynamic var placeID = UUID().uuidString
     @objc dynamic var name = ""
     @objc dynamic var address: String?
     @objc dynamic var type: String?
@@ -28,5 +30,25 @@ class Place: Object {
         self.type = type
         self.imageData = imageData
         self.rating = rating
+    }
+    
+    convenience init(record: CKRecord) { // Необязателная инициализация
+        self.init()
+        
+        guard let possibleImage = record.value(forKey: "imageData") else { return } // Делаем проверку
+        let imageAsset = possibleImage as! CKAsset // Кастим
+        guard let imageData = try? Data(contentsOf: imageAsset.fileURL!) else { return } // Достаем данные из базы с помощью URL
+        
+        self.placeID = record.value(forKey: "placeID") as! String
+        self.name = record.value(forKey: "name") as! String
+        self.address = record.value(forKey: "address") as? String
+        self.type = record.value(forKey: "type") as? String
+        self.imageData = imageData
+        self.date = Date()
+        self.rating = record.value(forKey: "rating") as! Int
+    }
+    
+    override static func primaryKey() -> String? {
+        return "placeID"
     }
 }

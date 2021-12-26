@@ -82,8 +82,8 @@
 		3C820771264FC9DD00FDFB22 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				3C1FA486264C2052007D80E9 /* StorageManager.swift */,
 				3CCC4D80265D3A3600C318D8 /* MapManager.swift */,
+				3C1FA486264C2052007D80E9 /* StorageManager.swift */,
 				3C97B562277008CD005D9322 /* ICloudManager.swift */,
 			);
 			path = Managers;

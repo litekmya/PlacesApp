@@ -11,6 +11,10 @@ class StorageManager {
     
     static let shared = StorageManager()
     
+//    lazy var realm: Realm = {
+//        return try! Realm()
+//    }()
+    
     let realm = try! Realm()
     
     private init() {}
@@ -35,6 +39,12 @@ class StorageManager {
         write {
             realm.delete(place)
         }
+    }
+    
+    private func initRealm() -> Realm {
+        let realm = try! Realm()
+        
+        return realm
     }
     
 }

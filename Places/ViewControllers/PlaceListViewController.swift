@@ -45,6 +45,10 @@ class PlaceListViewController: UIViewController {
         setup(tableView: tableView)
         setup(searchController: searchController)
         setup(barButton: ratingButton)
+        ICloudManager.fetchDataFromCloud(places: places) { place in
+            StorageManager.shared.save(place: place)
+            self.tableView.reloadData()
+        }
     }
     
     //MARK: - Navigations
