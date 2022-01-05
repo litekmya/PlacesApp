@@ -84,10 +84,18 @@ class DescriptionTableViewController: UITableViewController {
                 currentPlace.imageData = place.imageData
                 currentPlace.date = place.date
                 currentPlace.rating = place.rating
+                
+                ICloudManager.updateDataToCloud(place: currentPlace, with: image)
+
             }
         } else {
-            ICloudManager.saveDataToCloud(place: place, image: image)
-            print("works")
+            ICloudManager.saveDataToCloud(place: place, image: image) { recordID in
+                DispatchQueue.main.async {
+                    StorageManager.shared.write {
+                        place.recordID = recordID
+                    }
+                }
+            }
             StorageManager.shared.save(place: place)
         }
     }

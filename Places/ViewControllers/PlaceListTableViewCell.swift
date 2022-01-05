@@ -35,6 +35,15 @@ class PlaceListTableViewCell: UITableViewCell {
         return heightOfRows
     }
     
+    func configureCell(place: Place) {
+        nameLabel.text = place.name
+        addressLabel.text = place.address
+        typeLabel.text = place.type
+        ratingDisplay.rating = place.rating
+        
+        placeImageView.getDataFor(imageView: placeImageView, from: place)
+    }
+    
     //MARK: - Private Methods
     private func setupLabels() {
         nameLabel.setup(label: nameLabel, fontsize: 21, weight: .medium)

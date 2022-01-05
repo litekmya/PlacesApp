@@ -48,6 +48,14 @@ class PlaceListViewController: UIViewController {
         ICloudManager.fetchDataFromCloud(places: places) { place in
             StorageManager.shared.save(place: place)
             self.tableView.reloadData()
+            
+            ICloudManager.getImageFromCloud(place: place) { imageData in
+                StorageManager.shared.write {
+                    place.imageData = imageData
+                }
+                
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -130,12 +138,7 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "placeListCell", for: indexPath) as! PlaceListTableViewCell
         let place = filtered == true ? currentPlaces[indexPath.row] : places[indexPath.row]
         
-        cell.nameLabel.text = place.name
-        cell.addressLabel.text = place.address
-        cell.typeLabel.text = place.type
-        cell.ratingDisplay.rating = place.rating
-        
-        cell.placeImageView.getDataFor(imageView: cell.placeImageView, from: place)
+        cell.configureCell(place: place)
         
         heightOfRows = cell.placeImageView.frame.height + spacing
         
@@ -149,9 +152,15 @@ extension PlaceListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let place = places[indexPath.row]
-            StorageManager.shared.delete(place: place)
             
-            tableView.deleteRows(at: [indexPath], with: .automatic)
+            showAlert(
+                title: "Вы уверены, что хотите удалить эту запись?",
+                message: "Данная запись будет удалена со всех ваших устройств") {
+                    ICloudManager.deleteDataFromCloud(recordID: place.recordID)
+                    StorageManager.shared.delete(place: place)
+                    
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
         }
     }
     
@@ -182,6 +191,23 @@ extension PlaceListViewController: UISearchResultsUpdating {
                                       searchText,
                                       searchText)
         tableView.reloadData()
+    }
+}
+
+    //MARK: - Alert Controller
+extension PlaceListViewController {
+    
+    private func showAlert(title: String, message: String, closure: @escaping () -> ()) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            closure()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true)
     }
 }
 

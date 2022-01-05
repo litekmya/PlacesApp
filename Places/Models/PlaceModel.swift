@@ -7,9 +7,11 @@
 
 import RealmSwift
 import CloudKit
+import UIKit
 
 class Place: Object {
     
+    @objc dynamic var recordID = ""
     @objc dynamic var placeID = UUID().uuidString
     @objc dynamic var name = ""
     @objc dynamic var address: String?
@@ -35,10 +37,14 @@ class Place: Object {
     convenience init(record: CKRecord) { // Необязателная инициализация
         self.init()
         
-        guard let possibleImage = record.value(forKey: "imageData") else { return } // Делаем проверку
-        let imageAsset = possibleImage as! CKAsset // Кастим
-        guard let imageData = try? Data(contentsOf: imageAsset.fileURL!) else { return } // Достаем данные из базы с помощью URL
+//        guard let possibleImage = record.value(forKey: "imageData") else { return } // Делаем проверку
+//        let imageAsset = possibleImage as! CKAsset // Кастим
+//        guard let imageData = try? Data(contentsOf: imageAsset.fileURL!) else { return } // Достаем данные из базы с помощью URL
         
+        let image = UIImage(named: "cameraPlug")
+        let imageData = image?.pngData()
+        
+        self.recordID = record.recordID.recordName
         self.placeID = record.value(forKey: "placeID") as! String
         self.name = record.value(forKey: "name") as! String
         self.address = record.value(forKey: "address") as? String
