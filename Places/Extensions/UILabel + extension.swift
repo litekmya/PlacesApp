@@ -9,8 +9,8 @@ import UIKit
 
 extension UILabel {
     
-    func setup(label: UILabel, fontsize: CGFloat, weight: UIFont.Weight) {
-        label.font = UIFont.systemFont(ofSize: fontsize, weight: weight)
+    func setup(fontsize: CGFloat, weight: UIFont.Weight) {
+        font = UIFont.systemFont(ofSize: fontsize, weight: weight)
     }
 }
 

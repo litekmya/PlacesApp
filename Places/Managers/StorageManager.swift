@@ -35,6 +35,18 @@ class StorageManager {
         }
     }
     
+    func change(currentPlace: Place, newPlace: Place) {
+        write {
+            currentPlace.name = newPlace.name
+            currentPlace.address = newPlace.address
+            currentPlace.type = newPlace.type
+            currentPlace.imageData = newPlace.imageData
+            currentPlace.date = newPlace.date
+            currentPlace.rating = newPlace.rating
+            currentPlace.recordID = newPlace.recordID
+        }
+    }
+    
     func delete(place: Place) {
         write {
             realm.delete(place)

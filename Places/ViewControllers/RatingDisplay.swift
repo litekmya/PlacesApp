@@ -9,17 +9,17 @@ import UIKit
 
 @IBDesignable class RatingDisplay: UIStackView {
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     var rating = 0 {
         didSet {
             getRating()
         }
     }
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private var starImageViews = [UIImageView]()
     
-    //MARK:- Init
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -32,7 +32,7 @@ import UIKit
         createImageViews()
     }
     
-    //MARK:- Private Methods
+    //MARK: - Private Methods
     private func createImageViews() {
         
         for _ in 1...5 {
@@ -59,8 +59,6 @@ import UIKit
     }
     
     private func getRating() {
-        
-        
         for (index, imageView) in starImageViews.enumerated() {
             imageView.image = UIImage(named: "star")
             

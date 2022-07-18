@@ -41,17 +41,17 @@ class PlaceListTableViewCell: UITableViewCell {
         typeLabel.text = place.type
         ratingDisplay.rating = place.rating
         
-        placeImageView.getDataFor(imageView: placeImageView, from: place)
+        placeImageView.getData(from: place)
     }
     
     //MARK: - Private Methods
     private func setupLabels() {
-        nameLabel.setup(label: nameLabel, fontsize: 21, weight: .medium)
-        addressLabel.setup(label: addressLabel, fontsize: 19, weight: .regular)
-        typeLabel.setup(label: typeLabel, fontsize: 19, weight: .regular)
+        nameLabel.setup(fontsize: 21, weight: .medium)
+        addressLabel.setup(fontsize: 19, weight: .regular)
+        typeLabel.setup(fontsize: 19, weight: .regular)
     }
     
     private func setupImageView() {
-        placeImageView.setup(imageView: placeImageView)
+        placeImageView.setup()
     }
 }

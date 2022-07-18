@@ -46,7 +46,6 @@ class MapViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupMapView()
     }
     
@@ -72,7 +71,6 @@ class MapViewController: UIViewController {
     }
     
     //MARK: - IBOutlets action
-    
     @IBAction func cancelButtonAction(_ sender: Any) {
         dismiss(animated: true)
     }

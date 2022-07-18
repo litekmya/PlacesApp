@@ -25,13 +25,15 @@ class Place: Object {
                      type: String?,
                      imageData: Data?,
                      date: Date,
-                     rating: Int) {
+                     rating: Int,
+                     recordID: String) {
         self.init()
         self.name = name
         self.address = address
         self.type = type
         self.imageData = imageData
         self.rating = rating
+        self.recordID = recordID
     }
     
     convenience init(record: CKRecord) { // Необязателная инициализация

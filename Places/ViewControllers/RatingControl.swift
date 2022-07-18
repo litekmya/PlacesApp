@@ -9,14 +9,14 @@ import UIKit
 
 @IBDesignable class RatingControl: UIStackView {
     
-    //MARK:- Public properties
+    //MARK: - Public properties
     var rating = 0 {
         didSet {
             updateButtonSelectionState()
         }
     }
     
-    //MARK:- Private properties
+    //MARK: - Private properties
     private var ratingButtons = [UIButton]()
     
     @IBInspectable private var starSize: CGSize = CGSize(width: 40, height: 40) {
@@ -30,7 +30,7 @@ import UIKit
         }
     }
     
-    //MARK:- Init
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -43,9 +43,8 @@ import UIKit
         createButtons()
     }
     
-    //MARK:- Private Methods
+    //MARK: - Private Methods
     private func createButtons() {
-        
         for button in ratingButtons {
             removeArrangedSubview(button)
             button.removeFromSuperview()
@@ -67,18 +66,6 @@ import UIKit
         updateButtonSelectionState()
     }
     
-    @objc private func buttonPressed(button: UIButton) {
-        guard let index = ratingButtons.firstIndex(of: button) else { return }
-        let selectedRating = index + 1
-        
-        if selectedRating == rating {
-            rating = 0
-        } else {
-            rating = selectedRating
-        }
-        
-    }
-    
     private func setup(button: UIButton) {
         let bundle = Bundle(for: type(of: self))
         
@@ -98,5 +85,18 @@ import UIKit
         for (index, button) in ratingButtons.enumerated() {
             button.isSelected = index < rating
         }
+    }
+    
+    //MARK: - @objc
+    @objc private func buttonPressed(button: UIButton) {
+        guard let index = ratingButtons.firstIndex(of: button) else { return }
+        let selectedRating = index + 1
+        
+        if selectedRating == rating {
+            rating = 0
+        } else {
+            rating = selectedRating
+        }
+        
     }
 }

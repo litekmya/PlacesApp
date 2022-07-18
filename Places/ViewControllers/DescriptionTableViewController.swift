@@ -74,20 +74,12 @@ class DescriptionTableViewController: UITableViewController {
                           type: typeTextField.text,
                           imageData: imageData,
                           date: Date(),
-                          rating: ratingControl.rating)
+                          rating: ratingControl.rating,
+                          recordID: nameTextField.text!)
         
-        if currentPlace != nil {
-            StorageManager.shared.write {
-                currentPlace.name = place.name
-                currentPlace.address = place.address
-                currentPlace.type = place.type
-                currentPlace.imageData = place.imageData
-                currentPlace.date = place.date
-                currentPlace.rating = place.rating
-                
-                ICloudManager.updateDataToCloud(place: currentPlace, with: image)
-
-            }
+        if currentPlace != nil {            
+            StorageManager.shared.change(currentPlace: currentPlace, newPlace: place)
+            ICloudManager.updateDataToCloud(place: place, with: image)
         } else {
             ICloudManager.saveDataToCloud(place: place, image: image) { recordID in
                 DispatchQueue.main.async {
@@ -102,30 +94,21 @@ class DescriptionTableViewController: UITableViewController {
     
     //MARK: - Private methods
     private func setupLabels() {
-        namelabel.setup(label: namelabel, fontsize: 23, weight: .medium)
-        addressLabel.setup(label: addressLabel, fontsize: 23, weight: .medium)
-        typeLabel.setup(label: typeLabel, fontsize: 23, weight: .medium)
+        namelabel.setup(fontsize: 23, weight: .medium)
+        addressLabel.setup(fontsize: 23, weight: .medium)
+        typeLabel.setup(fontsize: 23, weight: .medium)
     }
     
     private func setupTextFields() {
         nameTextField.delegate = self
         nameTextField.addTarget(self, action: #selector(activateSaveButton), for: .editingChanged)
-        nameTextField.setup(textField: nameTextField,
-                            fontSize: 21,
-                            weight: .regular,
-                            placeholder: "Name")
+        nameTextField.setup(fontSize: 21, weight: .regular, holder: "Name")
         
         addressTextField.delegate = self
-        addressTextField.setup(textField: addressTextField,
-                               fontSize: 21,
-                               weight: .regular,
-                               placeholder: "Address")
+        addressTextField.setup(fontSize: 21, weight: .regular, holder: "Address")
         
         typeTextField.delegate = self
-        typeTextField.setup(textField: typeTextField,
-                            fontSize: 21,
-                            weight: .regular,
-                            placeholder: "Type")
+        typeTextField.setup(fontSize: 21, weight: .regular, holder: "Type")
     }
     
     private func setupSaveButton() {
@@ -140,8 +123,7 @@ class DescriptionTableViewController: UITableViewController {
             
             ratingControl.rating = Int(currentPlace.rating)
     
-            placeImageView.getDataFor(imageView: placeImageView,
-                                      from: currentPlace)
+            placeImageView.getData(from: currentPlace)
             
             saveButton.isEnabled = true
         } else {
@@ -220,42 +202,24 @@ extension DescriptionTableViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
         
-        let itemProviders = results.map(\.itemProvider)
-        
-        for provider in itemProviders {
-            if provider.canLoadObject(ofClass: UIImage.self) {
-                provider.loadObject(ofClass: UIImage.self) { image, error in
-                    if let error = error {
-                        print(error.localizedDescription)
-                    }
-                    
-                    DispatchQueue.main.async {
-                        if let image = image as? UIImage {
-                            self.placeImageView.image = nil
-                            
-                            var imageData = Data(image.jpegData(compressionQuality: 1)!)
-                            let imageSize = imageData.count
-                            
-                            if imageSize > 4000 {
-                                imageData = Data(image.jpegData(compressionQuality: 0.1)!)
-                            }
-                            
-                            self.placeImageView.image = UIImage(data: imageData)
-                        }
-                    }
+        PHPickerManager.shared.selectImageFromPhoto(results: results) { image in
+            if let image = image as? UIImage {
+                self.placeImageView.image = nil
+                
+                var imageData = Data(image.jpegData(compressionQuality: 1)!)
+                let imageSize = imageData.count
+                
+                if imageSize > 4000 {
+                    imageData = Data(image.jpegData(compressionQuality: 0.1)!)
                 }
+                
+                self.placeImageView.image = UIImage(data: imageData)
             }
         }
     }
     
     private func choosePHPicker() {
-        var configuration = PHPickerConfiguration()
-        configuration.filter = .images
-        configuration.selectionLimit = 1
-    
-        
-        let picker = PHPickerViewController(configuration: configuration)
-        picker.delegate = self
+        let picker = PHPickerManager.shared.setupPHPicker(delegate: self)
         
         present(picker, animated: true)
     }

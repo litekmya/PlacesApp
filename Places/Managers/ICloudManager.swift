@@ -133,6 +133,7 @@ class ICloudManager {
                     record.setValue(place.type, forKey: "type")
                     record.setValue(place.rating, forKey: "rating")
                     record.setValue(imageAsset, forKey: "imageData")
+                    record.setValue(place.recordID, forKey: "recordID")
                     
                     privateCloudDatabase.save(record) { _, error in
                         if let error = error {

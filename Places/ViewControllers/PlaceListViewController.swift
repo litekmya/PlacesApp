@@ -45,18 +45,7 @@ class PlaceListViewController: UIViewController {
         setup(tableView: tableView)
         setup(searchController: searchController)
         setup(barButton: ratingButton)
-        ICloudManager.fetchDataFromCloud(places: places) { place in
-            StorageManager.shared.save(place: place)
-            self.tableView.reloadData()
-            
-            ICloudManager.getImageFromCloud(place: place) { imageData in
-                StorageManager.shared.write {
-                    place.imageData = imageData
-                }
-                
-                self.tableView.reloadData()
-            }
-        }
+        getDataFromCloud()
     }
     
     //MARK: - Navigations
@@ -92,6 +81,21 @@ class PlaceListViewController: UIViewController {
     private func setup(barButton: UIBarButtonItem) {
         barButton.image = #imageLiteral(resourceName: "starSmallSize")
         barButton.tintColor = #colorLiteral(red: 0.9791182876, green: 0.7888242602, blue: 0.09157992154, alpha: 1)
+    }
+    
+    private func getDataFromCloud() {
+        ICloudManager.fetchDataFromCloud(places: places) { place in
+            StorageManager.shared.save(place: place)
+            self.tableView.reloadData()
+            
+            ICloudManager.getImageFromCloud(place: place) { imageData in
+                StorageManager.shared.write {
+                    place.imageData = imageData
+                }
+                
+                self.tableView.reloadData()
+            }
+        }
     }
     
     //MARK: - IBOutlets actions
